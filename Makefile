@@ -1,7 +1,7 @@
 # Makefile
 
 all: 
-	gcc -o lox-vm *.c
+	gcc -o clox-vm *.c
 
 clean:
-	rm lox-vm
+	rm -f clox-vm
