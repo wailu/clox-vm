@@ -2,6 +2,9 @@ CC=gcc
 CFLAGS=-I.
 LDFLAGS=
 
+CCPATH=$(shell which $(CC))
+$(info CC path: $(CCPATH))
+
 SRC=$(wildcard *.c)
 DEPS=$(wildcard *.h)
 OBJ=$(patsubst %.c, $(ODIR)/%.o, $(SRC))
@@ -10,7 +13,6 @@ ODIR=obj
 $(ODIR)/%.o: %.c $(DEPS) | $(ODIR)
 	@echo "Building $@"
 	$(CC) -c -o $@ $< $(CFLAGS)
-	@echo "\n"
 
 clox-vm: $(OBJ)
 	@echo "Linking object files to create the clox-vm executable..."
@@ -18,7 +20,7 @@ clox-vm: $(OBJ)
 	@echo "Done!"
 
 $(ODIR):
-	mkdir -p $@
+	mkdir $@
 
 .PHONY: clean
 clean:
