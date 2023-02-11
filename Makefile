@@ -6,7 +6,7 @@ CCPATH=$(shell which $(CC))
 $(info CC path: $(CCPATH))
 
 SRC=$(wildcard *.c)
-DEPS=$(wildcard *.h)
+DEP=$(wildcard *.h)
 OBJ=$(patsubst %.c, $(ODIR)/%.o, $(SRC))
 ODIR=obj
 
