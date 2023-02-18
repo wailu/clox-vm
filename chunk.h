@@ -9,6 +9,11 @@ typedef enum
     OP_RETURN,
     OP_CONSTANT,
     OP_CONSTANT_LONG,
+    OP_NEGATE,
+    OP_ADD,
+    OP_SUBTRACT,
+    OP_MULTIPLY,
+    OP_DIVIDE,
 } OpCode;
 
 // a chunk is a sequence of bytecode
