@@ -10,7 +10,7 @@ DEP=$(wildcard *.h)
 OBJ=$(patsubst %.c, $(ODIR)/%.o, $(SRC))
 ODIR=obj
 
-$(ODIR)/%.o: %.c $(DEPS) | $(ODIR)
+$(ODIR)/%.o: %.c $(DEP) | $(ODIR)
 	@echo "Building $@"
 	$(CC) -c -o $@ $< $(CFLAGS)
 
