@@ -38,6 +38,8 @@ static InterpretResult run()
     {
 #ifdef DEBUG_TRACE_EXECUTION
         printf("          ");
+        if (vm.stack == vm.stackTop)
+            printf("<empty>");
         for (Value *slot = vm.stack; slot < vm.stackTop; slot++)
         {
             printf("[ ");
@@ -74,7 +76,9 @@ static InterpretResult run()
         }
         case OP_NEGATE:
         {
-            push(-pop());
+            // optimisation: instead of push(-pop()), negate value in place on the stack
+            Value *prev = vm.stackTop - 1;
+            *prev = -(*prev);
             break;
         }
         case OP_ADD:

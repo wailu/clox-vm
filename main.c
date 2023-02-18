@@ -2,6 +2,7 @@
 #include "common.h"
 #include "chunk.h"
 #include "vm.h"
+#include "perf.h"
 
 int main(int argc, const char *argv[])
 {
@@ -23,7 +24,7 @@ int main(int argc, const char *argv[])
     writeChunk(&chunk, OP_RETURN, 1);
 
     disassembleChunk(&chunk, "test chunk");
-    interpret(&chunk);
+    MEASURE_CPU_TIME_USED({ interpret(&chunk); }, "interpret test chunk");
 
     freeChunk(&chunk);
     freeVM();
